@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm" routerLink="financial">
+      <mat-card  (mouseenter)="makeActive('financeState')" (mouseleave)="makeInActive('financeState')" [@financeState]="financeState">
+        <mat-card-header>
+          <mat-card-title><h2>Financial</h2></mat-card-title>
+        </mat-card-header>
+        <i class="fas fa-money-check-alt card-icon finance"></i>
+        <mat-card-content>
+          <p >
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-sm">
+      <mat-card  (mouseenter)="makeActive('mathState')" (mouseleave)="makeInActive('mathState')" [@mathState]="mathState">
+        <mat-card-header>
+          <mat-card-title><h2>Math</h2></mat-card-title>
+        </mat-card-header>
+        <i class="fas fa-calculator card-icon math"></i>
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-sm">
+      <mat-card  (mouseenter)="makeActive('unitState')" (mouseleave)="makeInActive('unitState')" [@mathState]="unitState">
+        <mat-card-header>
+          <mat-card-title><h2>Unit</h2></mat-card-title>
+        </mat-card-header>
+        <i class="fas fa-balance-scale card-icon unit"></i>
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

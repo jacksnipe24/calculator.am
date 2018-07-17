@@ -1,0 +1,16 @@
+mat-toolbar {
+  background-color: #FF9800;
+  box-shadow: 0px 2px 43px -2px rgba(0,0,0,0.75);
+  margin-bottom: 30px;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.heading {
+  color: white;
+}
+.mat-button {
+  font-size: 1.2em;
+}
