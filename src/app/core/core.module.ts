@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavComponent } from './components/nav/nav.component';
 import {MatToolbarModule, MatCardModule, MatButtonModule} from '@angular/material';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 
+import { NavComponent } from './components/nav/nav.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const components = [NavComponent, DashboardComponent];
 
@@ -13,7 +12,6 @@ const components = [NavComponent, DashboardComponent];
   imports: [
     CommonModule,
     RouterModule,
-    BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule

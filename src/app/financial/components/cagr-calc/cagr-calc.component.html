@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{page.heading}}</h1>
+      <p>{{page.description}}</p>
+      <div class="row">
+        <div class="col-6">
+          <form [formGroup]="cagrForm" (ngSubmit)="calculate()">
+            <mat-form-field>
+              <mat-select placeholder="Արժույթ" formControlName="currency">
+                <mat-option [value]="'pd'">
+                  Ֆունտ ստեռլինգ (£)
+                </mat-option>
+                <mat-option [value]="'usd'">
+                  Դոլլար ($)
+                </mat-option>
+                <mat-option [value]="'eur'">
+                  Եվրո (€)
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="mr15">
+              <input matInput placeholder="Ներկա արժեք" type="number" formControlName="presentValue">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Ապագա արժեք" type="number" formControlName="futureValue">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="mr15">
+              <input matInput placeholder="Ժամանակաշրջան" type="number" formControlName="period">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select formControlName="years">
+                <mat-option [value]="'m'">
+                  Ամիս
+                </mat-option>
+                <mat-option [value]="'y'">
+                  Տարի
+                </mat-option>
+                <mat-option [value]="'d'">
+                  Օր
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" type="submit">Հաշվել</button>
+          </form>
+        </div>
+        <div class="col-6">
+          <mat-card *ngIf="res">
+            <h3>Ընդհանուր տարեկան աճի տեմպը</h3>
+            <h1 class="primary">{{res}} %</h1>
+            <mat-card-content>
+              <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Բանաձև
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <h3>(FV / PV) <sup> 1/n </sup> - 1</h3>
+                  <ul>
+                    <li> FV = ներդրման ապագա արժեքը</li>
+                    <li> PV = ներդրման ներկա արժեքը</li>
+                    <li> n = տարիների քանակը</li>
+                  </ul>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="disc">
+            <mat-card>
+              <h3>Ուշադրություն</h3>
+              <p>
+                {{page.disclaimer}}
+              </p>
+            </mat-card>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="faq">
+            <h3>{{page?.heading}} - հաճախակի տրվող հարցեր</h3>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let item of page?.faq">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{item.question}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div [innerHTML]="item.answer | sanitizeHtml"></div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+      </div>
+      <div>
+        Տարածել
+        <share-buttons [theme]="'modern-light'" [include]="['facebook','twitter','google','linkedin','reddit','tumblr','whatsapp','messenger','telegram','vk','stumble','sms','email','copy','print']"
+          [autoSetMeta]="true"></share-buttons>
+      </div>
+    </div>
+  </div>
+</div>

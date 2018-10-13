@@ -1,0 +1,14 @@
+.compound-table {
+  width: 100%;
+}
+::ng-deep .compound-table tbody .mat-row:last-child {
+  background-color: #eaffad !important;
+  font-weight: bold !important;
+}
+.row{
+  margin-bottom: 10px;
+}
+
+::ng-deep .compound-table tr td{
+  font-size: 1.1em !important;
+}

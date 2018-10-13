@@ -1,0 +1,74 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'assets/css/bootstrap-grid.min.css';
+
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/material/material-dark-theme';
+@import '~@ngx-share/button/styles/themes/modern/modern-light-theme';
+@font-face {
+  font-family: 'myFont';
+  src: url('assets/fonts/Mardoto-Medium.ttf');
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'myFont';
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+.card-icon {
+  font-size: 9em;
+}
+.finance {
+  color: #558b2f;
+}
+.math {
+  color: #0277bd;
+}
+.unit {
+  color: #651fff;
+}
+.cagr {
+  color: #00695c;
+}
+.percent {
+  color: #9c27b0;
+}
+.currency {
+  color: #43a047;
+}
+.mrc {
+  color: #5d4037;
+}
+.savings {
+  color: #ff5722;
+}
+.credit-card {
+  color: #3f51b5;
+}
+.primary {
+  color: #673ab7;
+}
+
+.acceleration {
+  color: #303f9f;
+}
+
+.percentField,
+.moneyField {
+  width: 100px !important;
+}
+.yearField,
+.periodField {
+  width: 70px !important;
+}
+.compountInterval {
+  width: 140px !important ;
+}
+
+.small {
+  font-size: 0.7em;
+}

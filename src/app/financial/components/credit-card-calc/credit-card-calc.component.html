@@ -1,0 +1,206 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{page.heading}}</h1>
+      <p>
+        {{page.description}}
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <mat-tab-group>
+              <mat-tab label="Միանվագ մարման հաշվիչ">
+                <p>Որքան ժամանակ կպահանջվի, որպեսզի վճարեմ իմ կրեդիտ քարտի վարկը ?</p>
+                <p>Հաշվարկեք թե որքան ժամանակ կպահանջվի որպեսզի մարեք ձեր վարկային քարտի մայր գումարը և այդ
+                  ժամանակահատվածււմ գոյացած տոկոսագումարները:</p>
+                <form [formGroup]="creditCardForm" (ngSubmit)="calculate()">
+                  <span class="mr15">Արժույթ</span>
+                  <mat-form-field>
+                    <mat-select formControlName="currency">
+                      <mat-option [value]="'amd'">
+                        Դրամ (Դ)
+                      </mat-option>
+                      <mat-option [value]="'usd'">
+                        Դոլլար ($)
+                      </mat-option>
+                      <mat-option [value]="'eur'">
+                        Եվրո (€)
+                      </mat-option>
+                      <mat-option [value]="'ot'">
+                        Այլ
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <br>
+                  <span class="mr15">Քարտում եղած գումարը</span>
+                  <mat-form-field class="mr15 moneyField">
+                    <input matInput type="number" formControlName="balance">
+                    <span matSuffix>
+                      <i [class]="creditCardForm.get('currency').value === 'usd' ? 'fas fa-dollar-sign' :
+                  creditCardForm.get('currency').value === 'eur' ? 'fas fa-euro-sign' : 'fas fa-money-bill-wave'"></i>
+                    </span>
+                  </mat-form-field>
+                  <br>
+                  <span class="mr15">Տոկոսադրույք</span>
+                  <mat-form-field class="percentField">
+                    <input matInput type="number" formControlName="rate">
+                    <span matSuffix>
+                      <i class="fas fa-percent"></i>
+                    </span>
+                  </mat-form-field>
+                  <br>
+                  <span class="mr15">Ամսական վճարում</span>
+                  <mat-form-field class="moneyField mr15">
+                    <input matInput type="number" formControlName="perMonth">
+                    <span matSuffix>
+                      <i [class]="creditCardForm.get('currency').value === 'usd' ? 'fas fa-dollar-sign' :
+                  creditCardForm.get('currency').value === 'eur' ? 'fas fa-euro-sign' : 'fas fa-money-bill-wave'"></i>
+                    </span>
+                  </mat-form-field>
+                  <button mat-raised-button color="primary" type="submit">Հաշվել</button>
+                </form>
+              </mat-tab>
+              <mat-tab label="Ամսական վճարումների հաշվիչ">
+                <p>Ինչ ամսական վճարումներ պետք է անեմ, որպեսզի վերացնեմ վարկային քարտի մնացորդը?</p>
+                <p>Հաշվարկեք, թե որքան պետք է վճարեք յուրաքանչյուր ամիս, որոշակի ժամանակահատվածում ձեր վարկային քարտի
+                  մնացորդը վերացնելու համար: Այս հաշվիչը նաև ցույց կտա ձեզ այն տոկոսի չափը, որը դուք կվճարեք այդ
+                  ժամանակահատվածում:
+                </p>
+                <form [formGroup]="creditCardFormMonth" (ngSubmit)="calculate()">
+                  <span class="mr15">Արժույթ</span>
+                  <mat-form-field>
+                    <mat-select formControlName="currency">
+                      <mat-option [value]="'amd'">
+                        Դրամ (Դ)
+                      </mat-option>
+                      <mat-option [value]="'usd'">
+                        Դոլլար ($)
+                      </mat-option>
+                      <mat-option [value]="'eur'">
+                        Եվրո (€)
+                      </mat-option>
+                      <mat-option [value]="'ot'">
+                        Այլ
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <br>
+                  <span class="mr15">Քարտում եղած գումարը</span>
+                  <mat-form-field class="mr15 moneyField">
+                    <input matInput type="number" formControlName="balance">
+                    <span matSuffix>
+                      <i [class]="creditCardForm.get('currency').value === 'usd' ? 'fas fa-dollar-sign' :
+                  creditCardForm.get('currency').value === 'eur' ? 'fas fa-euro-sign' : 'fas fa-money-bill-wave'"></i>
+                    </span>
+                  </mat-form-field>
+                  <br>
+                  <span class="mr15">Տոկոսադրույք</span>
+                  <mat-form-field class="percentField">
+                    <input matInput type="number" formControlName="rate">
+                    <span matSuffix>
+                      <i class="fas fa-percent"></i>
+                    </span>
+                  </mat-form-field>
+                  <br>
+                  <span class="mr15">Մարման ամիսների ցանկալի քանակը</span>
+                  <mat-form-field class="yearField mr15">
+                    <input matInput type="number" formControlName="debt">
+                    <span matSuffix>
+                    </span>
+                  </mat-form-field>
+                  <button mat-raised-button color="primary" type="submit">Հաշվել</button>
+                </form>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <mat-card *ngIf="res">
+              <table mat-table [dataSource]="res" class="mat-elevation-z8 compound-table">
+
+                <ng-container matColumnDef="yearNumber">
+                  <th mat-header-cell *matHeaderCellDef> {{compoundPeriod}}</th>
+                  <td mat-cell *matCellDef="let element"> <b>{{element.i}} </b></td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="year">
+                  <th mat-header-cell *matHeaderCellDef>Աճ ({{ compoundPeriod}}) </th>
+                  <td mat-cell *matCellDef="let element">{{currency}} {{element.y | number}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total">
+                  <th mat-header-cell *matHeaderCellDef> Ընդհանուր աճ </th>
+                  <td mat-cell *matCellDef="let element">{{currency}} {{element.t | number}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="balance">
+                  <th mat-header-cell *matHeaderCellDef> Գումար </th>
+                  <td mat-cell *matCellDef="let element">{{currency}} {{element.b | number}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-card-content>
+                <mat-accordion>
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Բանաձև
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <h3>V = P (1 + r / n) <sup>(nt)</sup></h3>
+                    <ul>
+                      <li>V = ներդրումների ապագա արժեքը (վերջնական կապիտալ)</li>
+                      <li>P = սկզբանական (նախասկզբնական) կապիտալ</li>
+                      <li>r = տարեկան տոկոսադրույքը</li>
+                      <li>n = տոկոսների հաշվարկման քանակը (տարեկան)</li>
+                      <li>t = ավանդադրման տևողությունը (տարիների քանակ)</li>
+                    </ul>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="disc">
+              <mat-card>
+                <h3>Ուշադրություն</h3>
+                <p>
+                  Մինչդեռ մենք գործի ենք դրել մեր բոլոր ջանքերը վարկային քարտերի վճարման հաշվիչները պատրաստելու համար,
+                  calculator.am կայքը պատասխանատու չի հանդիսանում ցանկացած հատուկ, պատահական, անուղղակի կամ հետևանքային
+                  վնասների, կամ ցանկացած տեսակի դրամական կորուստների համար, որոնք կարող են առաջանալ հաշվիչ գործիքներից
+                  և կայքից ստացված տեղեկություններից:
+                  Բարդ տոկոսային հաշվիչներով տրված հաշվարկները միայն ուղեցույց են: Խնդրում ենք կապնվել անկախ ֆինանսական
+                  խորհրդատուի հետ պրոֆեսիոնալ խորհուրդի համար: Կարդալ ամբողջ հոդվածը:
+
+                </p>
+              </mat-card>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="faq">
+              <h3>{{page.heading}} - հաճախակի տրվող հարցեր</h3>
+              <mat-accordion>
+                <mat-expansion-panel *ngFor="let item of page?.faq">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{item.question}}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div [innerHTML]="item.answer | sanitizeHtml"></div>
+                </mat-expansion-panel>
+              </mat-accordion>
+              <p>Եթե ունեք որևէ խնդիր կապված վարկային քարտի վճարման հաշվիչի օգտագործման հետ, խնդրում ենք կապնվել մեր
+                հետ: Հույսով ենք այդ հաշվիչները կօգնեն ձեզ արագ և արդյունավետ վճարել ձեր վարկային քարտի հաշիվները:</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          Տարածել
+          <share-buttons [theme]="'modern-light'" [include]="['facebook','twitter','google','linkedin','reddit','tumblr','whatsapp','messenger','telegram','vk','stumble','sms','email','copy','print']"
+            [autoSetMeta]="true"></share-buttons>
+        </div>
+    </div>
+  </div>
+</div>

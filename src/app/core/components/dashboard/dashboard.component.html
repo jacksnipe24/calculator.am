@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm" routerLink="financial">
-      <mat-card  (mouseenter)="makeActive('financeState')" (mouseleave)="makeInActive('financeState')" [@financeState]="financeState">
+    <div class="col-sm" routerLink="finansakan">
+      <mat-card>
         <mat-card-header>
-          <mat-card-title><h2>Financial</h2></mat-card-title>
+          <mat-card-title><h2>Ֆինանսական</h2></mat-card-title>
         </mat-card-header>
         <i class="fas fa-money-check-alt card-icon finance"></i>
         <mat-card-content>
@@ -16,9 +16,9 @@
       </mat-card>
     </div>
     <div class="col-sm">
-      <mat-card  (mouseenter)="makeActive('mathState')" (mouseleave)="makeInActive('mathState')" [@mathState]="mathState">
+      <mat-card>
         <mat-card-header>
-          <mat-card-title><h2>Math</h2></mat-card-title>
+          <mat-card-title><h2>Մաթեմաթիկական</h2></mat-card-title>
         </mat-card-header>
         <i class="fas fa-calculator card-icon math"></i>
         <mat-card-content>
@@ -30,10 +30,10 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="col-sm">
-      <mat-card  (mouseenter)="makeActive('unitState')" (mouseleave)="makeInActive('unitState')" [@mathState]="unitState">
+    <div class="col-sm" routerLink="miavorayin">
+      <mat-card>
         <mat-card-header>
-          <mat-card-title><h2>Unit</h2></mat-card-title>
+          <mat-card-title><h2>Միավորային</h2></mat-card-title>
         </mat-card-header>
         <i class="fas fa-balance-scale card-icon unit"></i>
         <mat-card-content>
